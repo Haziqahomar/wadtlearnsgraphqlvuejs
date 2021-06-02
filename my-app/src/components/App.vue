@@ -1,13 +1,36 @@
 <template>
+
   <div id="app">
-    <p class="username">{{ currentUser.username }}'s posts:</p>
-    <ul>
-      <li v-for="post in posts" :key="post.id">{{ post.content }}</li>
-    </ul>
     <div>
       <input v-model="newPostContent" />
       <button @click="addPost()">Add Post</button>
     </div>
+    <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr >
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" >
+                Name
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Title
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                User ID
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                ID
+              </th>
+            </tr>
+            <tr v-for="post in posts" :key="post.userId">
+              <td> <img src="https://www.seekpng.com/png/detail/966-9665493_my-profile-icon-blank-profile-image-circle.png" alt="profile" width="100" height="100"> {{currentUser.username}} </td>
+              <td> {{post.content}} </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{{currentUser.id}} </span> </td>
+              <td> {{ post.id }} </td>
+            </tr>
+          </thead>
+
+        </table>
   </div>
 </template>
 
@@ -107,3 +130,8 @@ export default {
   }
 };
 </script>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
